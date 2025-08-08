@@ -3,20 +3,12 @@ public class UnoCard{
 	String type;
 	int value;
 	static String[] colorVal = {"Green", "Yellow", "Red", "Blue"};
-	static String[] typeVal = {"Number", "+2", "+4", "Wild"};
+	static String[] typeVal = {"Number", "+2", "+4", "Wild", "Number", "Number"}; // number added multiple times cus i cant bring myself to think of a better solution (number card should have more probability of appearing)
 
 	UnoCard(String color, String type, int value){
 		this.color = color;
 		this.type = type;
 		this.value = value;
-	}
-
-	static UnoCard[] generateHand(){
-		UnoCard[] hand = new UnoCard[7];
-		for (int i = 0; i < 7; i++){
-			hand[i] = generateCard();
-		}
-		return hand;
 	}
 	
 	static UnoCard generateCard(){
