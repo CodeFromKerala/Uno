@@ -30,17 +30,18 @@ class Hand{
     // Method to display all cards in a hand
     void showHand(){
         for (int i = 0; i < this.hand.size(); i++){
-            System.out.println(String.valueOf(i + 1) + this.hand.get(i).displayVal());
+            System.out.println(String.valueOf(i + 1) + ". " + this.hand.get(i).displayVal());
         }
     }
 
     // Method to play a specific card to the pile
-    UnoCard playCard(UnoCard card, UnoCard facingCard){
-        if (card.color == facingCard.color || card.type == facingCard.type){
-            
-            return card;
-        }else{
-            return facingCard;
-        } // case to be made of same cards
+    UnoCard playCard(UnoCard card, UnoCard facingCard, Hand hand){
+        hand.hand.remove(card);
+        return card;
+    }
+
+    // Checking whether given card is playable
+    static boolean checkCard(UnoCard card, UnoCard facingCard){
+        return (card.type == facingCard.type ) || (card.value == facingCard.value) || (card.color == facingCard.color);
     }
 }

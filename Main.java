@@ -30,7 +30,7 @@ public class Main{
 		Hand hand2 = new Hand();
 		boolean turn = true;
 		UnoCard facingCard = UnoCard.generateCard();
-		
+
 		// Main Game Loop
 		System.out.println("Facing Card -> " + facingCard.displayVal());
 		while (hand1.hand.size() != 0 || hand2.hand.size() != 0){
@@ -39,14 +39,22 @@ public class Main{
 				hand1.showHand();
 				System.out.println("Hand1's Turn -> ");
 				int ch = sc.nextInt();
-				System.out.println("Facing Card: " + hand1.playCard(hand1.hand.get(ch - 1), facingCard).displayVal());
-				turn = false;
+				if (Hand.checkCard(hand1.hand.get(ch - 1), facingCard)){
+					System.out.println("Facing Card: " + hand1.playCard(hand1.hand.get(ch - 1), facingCard, hand1).displayVal());
+					turn = false;
+				}else{
+					System.out.println("Invalid Card :( Try Again!");
+				}
 			}else{
 				hand2.showHand();
 				System.out.println("Hand2's Turn -> ");
 				int ch = sc.nextInt();
-				System.out.println("Facing Card: " + hand2.playCard(hand2.hand.get(ch - 1), facingCard).displayVal());
-				turn = true;
+				if (Hand.checkCard(hand2.hand.get(ch - 1), facingCard)){
+					System.out.println("Facing Card: " + hand2.playCard(hand2.hand.get(ch - 1), facingCard, hand2).displayVal());
+					turn = true;
+				}else{
+					System.out.println("Invalid Card :( Try Again!");
+				}
 			}
 		}
 		
@@ -57,5 +65,5 @@ public class Main{
 		}else{
 			System.out.println("Player 2 Wins!");
 		}
-	}	
+	}
 }
