@@ -11,31 +11,48 @@ Rules Of Uno ->
 3. Person Who finishes their deck wins
 4. Stacking is allowed, contrary to the original game
 
-(This is another version of UNO no mercy since there are technically no limits on the number of cards in the deck)
+(This is another version of UNO no mercy since there are technically no limits on the number of special or non-special cards in the deck)
 
 
 
 */
 
+// imports 
+
 import java.util.Scanner;
 
+// Main Class
 public class Main{
 
 	public static void main(String[] args){
+		// Player Creation and Variables
 		Hand hand1 = new Hand();
 		Hand hand2 = new Hand();
 		boolean turn = true;
 		UnoCard facingCard = UnoCard.generateCard();
+		
 		// Main Game Loop
-
+		System.out.println("Facing Card -> " + facingCard.displayVal());
 		while (hand1.hand.size() != 0 || hand2.hand.size() != 0){
+			Scanner sc = new Scanner(System.in);
 			if (turn){
-				hand1.playCard();
+				hand1.showHand();
+				System.out.println("Hand1's Turn -> ");
+				int ch = sc.nextInt();
+				System.out.println("Facing Card: " + hand1.playCard(hand1.hand.get(ch - 1), facingCard).displayVal());
+				turn = false;
 			}else{
-				hand2.playCard();
+				hand2.showHand();
+				System.out.println("Hand2's Turn -> ");
+				int ch = sc.nextInt();
+				System.out.println("Facing Card: " + hand2.playCard(hand2.hand.get(ch - 1), facingCard).displayVal());
+				turn = true;
 			}
 		}
-		if (hand1.hand.size == 0){
+		
+		// Winning Conditions
+		
+		if (hand1.hand.size() == 0){
 			System.out.println("Player 1 Wins!");
 		}else{
 			System.out.println("Player 2 Wins!");

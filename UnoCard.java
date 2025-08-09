@@ -23,7 +23,7 @@ public class UnoCard{
 			return card;
 	}
 
-	void displayVal(){
-		System.out.println(this.color + "," + this.type + "," + String.valueOf(this.value));
+	String displayVal(){
+		return this.color + "," + this.type + "," + String.valueOf(this.value);
 	}
 }

@@ -15,12 +15,13 @@ class Hand{
 
     void showHand(){
         for (int i = 0; i < this.hand.size(); i++){
-            this.hand.get(i).displayVal();
+            System.out.println(String.valueOf(i + 1) + this.hand.get(i).displayVal());
         }
     }
 
     UnoCard playCard(UnoCard card, UnoCard facingCard){
         if (card.color == facingCard.color || card.type == facingCard.type){
+            
             return card;
         }else{
             return facingCard;
