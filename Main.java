@@ -31,10 +31,11 @@ public class Main{
 		boolean turn = true;
 		UnoCard facingCard = UnoCard.generateCard();
 
+		Scanner sc = new Scanner(System.in);
+
 		// Main Game Loop
 		System.out.println("Facing Card -> " + facingCard.displayVal());
 		while (hand1.hand.size() != 0 || hand2.hand.size() != 0){
-			Scanner sc = new Scanner(System.in);
 			if (turn){
 				hand1.showHand();
 				System.out.println("Hand1's Turn -> ");
@@ -57,6 +58,7 @@ public class Main{
 				}
 			}
 		}
+		sc.close();
 		
 		// Winning Conditions
 		
