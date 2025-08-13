@@ -12,7 +12,7 @@ public class UnoCard{
 	String type;
 	int value;
 	static String[] colorVal = {"Green", "Yellow", "Red", "Blue"};
-	static String[] typeVal = {"Number", "+2", "+4", "Wild", "Number", "Number"}; 
+	static String[] typeVal = {"Number", "+2", "+4", "Wild", "Number", "Number", "Number", "Number", "Number"}; 
 	/* number added multiple times cus i cant bring myself to think of a better/cleaner solution 
 	(number card should have more probability of appearing)
 	*/
