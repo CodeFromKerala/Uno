@@ -23,49 +23,63 @@ import java.util.Scanner;
 
 // Main Class
 public class Main{
+	public static boolean handSize(Hand hand1, Hand hand2){
+		return (hand1.hand.size() == 0 || hand2.hand.size() == 0);
+	}
 
 	public static void main(String[] args){
 		// Player Creation and Variables
 		Hand hand1 = new Hand();
 		Hand hand2 = new Hand();
-		boolean turn = true;
 		UnoCard facingCard = UnoCard.generateCard();
-
+		Hand[] hands = {hand1, hand2};
 		Scanner sc = new Scanner(System.in);
-
+		System.out.println(handSize(hand1, hand2));
+		System.out.println(handSize(hands[0], hands[1]));
 		// Main Game Loop
 		System.out.println("Facing Card -> " + facingCard.displayVal());
 		while (hand1.hand.size() != 0 || hand2.hand.size() != 0){
-			if (turn){
-				hand1.showHand();
-				System.out.println("Hand1's Turn -> ");
+			int roundNum = 1;
+			System.out.println("Round " + String.valueOf(roundNum));
+			for (int i = 0; i < 2; i++){
+				System.out.println("Choose for Player" + String.valueOf(i + 1));
+				System.out.println("1. Play Card");
+				System.out.println("2. Draw Card");
+				System.out.println("3. Show Cards");
+				System.out.println("Choice: ");
 				int ch = sc.nextInt();
-				if (Hand.checkCard(hand1.hand.get(ch - 1), facingCard)){
-					System.out.println("Facing Card: " + hand1.playCard(hand1.hand.get(ch - 1), facingCard, hand1).displayVal());
-					turn = false;
+				if (ch == 1){
+					int n = sc.nextInt();
+					UnoCard card = hands[i].hand.get(n);
+					if (Hand.checkCard(card, facingCard)){
+						hands[i].playCard(card, facingCard, hands[i]);
+					}else{
+						System.out.println("Try Again");
+						i--;
+					}
+				}else if (ch == 2){
+					hands[i].drawCard();
+					i--;
+				}else if (ch == 3){
+					hands[i].showHand();
 				}else{
-					System.out.println("Invalid Card :( Try Again!");
-				}
-			}else{
-				hand2.showHand();
-				System.out.println("Hand2's Turn -> ");
-				int ch = sc.nextInt();
-				if (Hand.checkCard(hand2.hand.get(ch - 1), facingCard)){
-					System.out.println("Facing Card: " + hand2.playCard(hand2.hand.get(ch - 1), facingCard, hand2).displayVal());
-					turn = true;
-				}else{
-					System.out.println("Invalid Card :( Try Again!");
+					System.out.println("Invalid Choice, Try again");
+					i--;
 				}
 			}
+			roundNum++;
 		}
-		sc.close();
 		
+		sc.close();
+
 		// Winning Conditions
 		
 		if (hand1.hand.size() == 0){
 			System.out.println("Player 1 Wins!");
-		}else{
+		}else if (hand2.hand.size() == 0){
 			System.out.println("Player 2 Wins!");
+		}else{
+			System.out.println("Fatal Error");
 		}
 	}
 }
