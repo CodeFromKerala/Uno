@@ -41,7 +41,9 @@ public class Main{
 		while (hand1.hand.size() != 0 || hand2.hand.size() != 0){
 			int roundNum = 1;
 			System.out.println("Round " + String.valueOf(roundNum));
-			for (int i = 0; i < 2; i++){
+			int i = 0;
+			while (i < 2){ // Thanks to Joann chetan
+				System.out.println("Facing Card ->" + facingCard.displayVal());
 				System.out.println("Choose for Player" + String.valueOf(i + 1));
 				System.out.println("1. Play Card");
 				System.out.println("2. Draw Card");
@@ -53,18 +55,20 @@ public class Main{
 					UnoCard card = hands[i].hand.get(n);
 					if (Hand.checkCard(card, facingCard)){
 						hands[i].playCard(card, facingCard, hands[i]);
+						if (i < 1){
+							i++;
+						}else{
+							i--;
+						}
 					}else{
 						System.out.println("Try Again");
-						i--;
 					}
 				}else if (ch == 2){
 					hands[i].drawCard();
-					i--;
 				}else if (ch == 3){
 					hands[i].showHand();
 				}else{
 					System.out.println("Invalid Choice, Try again");
-					i--;
 				}
 			}
 			roundNum++;
