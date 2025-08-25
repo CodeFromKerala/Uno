@@ -42,7 +42,7 @@ public class Main{
 			int roundNum = 1;
 			System.out.println("Round " + String.valueOf(roundNum));
 			int i = 0;
-			while (i < 2){ // Thanks to Joann chetan
+			while (i < 2){ // Thanks to Johann chetan
 				System.out.println("Facing Card ->" + facingCard.displayVal());
 				System.out.println("Choose for Player" + String.valueOf(i + 1));
 				System.out.println("1. Play Card");
